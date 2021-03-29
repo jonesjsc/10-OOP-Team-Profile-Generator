@@ -1,7 +1,7 @@
 {
-  "name": "10-OOP-Team-Profile-Generator",
+  "name": "10-oop-team-profile-generator",
   "version": "1.0.0",
-  "description": "",
+  "description": "Homework to learn about classes and how to extend them",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,8 +11,8 @@
     "url": "git+https://github.com/jonesjsc/10-OOP-Team-Profile-Generator.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "jason.e.jones@gmail.com",
+  "license": "Unlicense",
   "bugs": {
     "url": "https://github.com/jonesjsc/10-OOP-Team-Profile-Generator/issues"
   },
@@ -20,5 +20,8 @@
   "dependencies": {
     "inquirer": "^8.0.0"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "directories": {
+    "lib": "lib"
+  }
 }
