@@ -19,5 +19,6 @@
   "homepage": "https://github.com/jonesjsc/10-OOP-Team-Profile-Generator#readme",
   "dependencies": {
     "inquirer": "^8.0.0"
-  }
+  },
+  "devDependencies": {}
 }
