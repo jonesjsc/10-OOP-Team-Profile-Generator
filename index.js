@@ -1,29 +1,3 @@
-// step 1: collect team managers info
-//      - name, id, email, phone
-// step 2: menu to add engineer or intern or finished
-// step 3a: for engineer - we collect
-//      - name, id, email, github
-// step 3b: for intern - we collect
-//      - name, id,email,school 
-// employee class
-// class is extended for manager, engineer, intern in different ways
-
-// first, i will collect manager
-// once collected, i will append this to the html
-// then i will enter a loop until finished
-// i will collect engineer or intern
-// i will write out the correct card once collected
-
-// function to collect user input
-// this function should be smart enuf to ask the right questions
-
-// push into an array and then loop over than 
-
-// buildArray
-// renderHtml
-// one inquirer prompt in a function
-// inside this funtion ask do you want to continue
-// call the function do you weant to create the 
 const inquirer = require ('inquirer'); // gets us interactive prompt
 const fs = require ('fs'); // gets us the ability to write files
 const path = require ('path'); // gets us __dirname
@@ -41,21 +15,22 @@ const baseQuery = [
     {
         type: "input",
         name: "name",
-        message: "What is the name? "
+        message: "what is the name? "
     },
     {
         type: "input",
         name: "id",
-        message: "What is the ID? "
+        message: "what is the ID? "
     },
     {
         type: "input",
         name: "email",
-        message: "What is the email? "
+        message: "what is the email? "
     }
 ]
 
-const managerQuery=[...baseQuery]; // using spread here because I want a true copy
+// const managerQuery=[...baseQuery]; // using spread here because I want a true copy
+const managerQuery=JSON.parse(JSON.stringify(baseQuery));  // TIL the differece between shallow copy and deep copy :-)
 managerQuery.push( 
     {
         type: "input",
@@ -63,8 +38,12 @@ managerQuery.push(
         message: "What is the team manager's office number "
     });
 
+    for (let i = 0; i < 3; i++) managerQuery[i].message="Manager: "+managerQuery[i].message;
+    
+    console.log(managerQuery[0].message);
 
-const engineerQuery=[...baseQuery]; // using spread here because I want a true copy
+// const engineerQuery=[...baseQuery]; // using spread here because I want a true copy
+const engineerQuery=JSON.parse(JSON.stringify(baseQuery)); // TIL the differece between shallow copy and deep copy :-)
 engineerQuery.push(
         {
         type: "input",
@@ -72,13 +51,18 @@ engineerQuery.push(
         message: "What is the engineer's github account name? "   
     });
 
-const internQuery=[...baseQuery]; // using spread here because I want a true copy
+    for (let i = 0; i < 3; i++) engineerQuery[i].message="Engineer: "+engineerQuery[i].message;
+
+// const internQuery=[...baseQuery]; // using spread here because I want a true copy
+const internQuery=JSON.parse(JSON.stringify(baseQuery)); // TIL the differece between shallow copy and deep copy :-)
 internQuery.push(
     {
         type: "input",
         name: "internSchool",
         message: "What is the intern's school? "   
     });
+
+    for (let i = 0; i < 3; i++) internQuery[i].message="Intern: "+internQuery[i].message;
 
 const emp = [
     {
