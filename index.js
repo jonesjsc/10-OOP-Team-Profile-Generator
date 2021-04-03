@@ -37,27 +37,70 @@ const outputPath = path.join(outputDir, "myteam.html");
 
 const myTeam = []; // initialize the myTeam as an array object
 
-const manager = [
+const baseQuery = [
     {
         type: "input",
-        name: "managerName",
-        message: "Who is the team manager's name? "
+        name: "name",
+        message: "What is the name? "
     },
     {
         type: "input",
-        name: "managerId",
-        message: "What is the team manager's ID? "
+        name: "id",
+        message: "What is the ID? "
     },
     {
         type: "input",
-        name: "managerEmail",
-        message: "What is the team manager's email? "
-    },
+        name: "email",
+        message: "What is the email? "
+    }
+]
+
+const managerQuery=[...baseQuery]; // using spread here because I want a true copy
+managerQuery.push( 
     {
         type: "input",
         name: "managerOfficeNum",
         message: "What is the team manager's office number "
-    },
+    });
+
+
+const engineerQuery=[...baseQuery]; // using spread here because I want a true copy
+
+engineerQuery.push(
+        {
+        type: "input",
+        name: "engineerGitHub",
+        message: "What is the engineer's github account name? "   
+    });
+
+
+const internQuery=[...baseQuery]; // using spread here because I want a true copy
+internQuery.push(
+    {
+        type: "input",
+        name: "internSchool",
+        message: "What is the intern's school? "   
+    });
+
+const employee = [
+    {
+        type: "list",
+        message: "What kind of employee would you like to add?",
+        name: "employeeRole",
+        choice: [
+            "engineer",
+            "intern",
+            "no more entries"
+        ]
+    }
 ];
 
-
+function createMgr() {
+    inquirer.prompt(manager)
+    .then((answers) => {
+        console.log(answers);
+        const manager = new Manager(
+            answers.managerName,
+        )
+    })
+}
