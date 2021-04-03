@@ -65,14 +65,12 @@ managerQuery.push(
 
 
 const engineerQuery=[...baseQuery]; // using spread here because I want a true copy
-
 engineerQuery.push(
         {
         type: "input",
         name: "engineerGitHub",
         message: "What is the engineer's github account name? "   
     });
-
 
 const internQuery=[...baseQuery]; // using spread here because I want a true copy
 internQuery.push(
@@ -82,12 +80,12 @@ internQuery.push(
         message: "What is the intern's school? "   
     });
 
-const employee = [
+const emp = [
     {
         type: "list",
         message: "What kind of employee would you like to add?",
         name: "employeeRole",
-        choice: [
+        choices: [
             "engineer",
             "intern",
             "no more entries"
@@ -96,11 +94,67 @@ const employee = [
 ];
 
 function createMgr() {
-    inquirer.prompt(manager)
+    inquirer.prompt(managerQuery)
     .then((answers) => {
         console.log(answers);
-        const manager = new Manager(
-            answers.managerName,
-        )
-    })
+        const emp = new Manager(
+            answers.name,
+            answers.id,
+            answers.email,
+            answers.managerOfficeNum
+        );
+        myTeam.push(emp);
+        createEmployee();
+    });
+}
+createMgr();
+
+function createEngineer() {
+    inquirer.prompt(engineerQuery)
+    .then((answers) => {
+        console.log(answers);
+        const emp = new Engineer(
+            answers.name,
+            answers.id,
+            answers.email,
+            answers.engineerGitHub
+        );
+        myTeam.push(emp);
+        createEmployee();
+    });
+}
+
+function createIntern() {
+    inquirer.prompt(internQuery)
+    .then((answers) => {
+        console.log(answers);
+        const emp = new Intern(
+            answers.name,
+            answers.id,
+            answers.email,
+            answers.internSchool
+        );
+        myTeam.push(emp);
+        createEmployee();
+    });
+}
+
+function createEmployee() {
+    inquirer.prompt(emp)
+    .then((answers) => {
+        switch (answers.employeeRole) {
+            case "engineer":
+                return createEngineer();
+            case "intern":
+                return createIntern();
+            default:
+                return createTeam();
+        }
+    });
+}
+
+function createTeam() {
+    console.log("create");
+    console.log(myTeam);
+    fs.writeFileSync(outputPath, generateTeam(myTeam))
 }

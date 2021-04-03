@@ -3,6 +3,8 @@ const generateTeam = team => {
 
     // create the manager html
     const generateManager = manager => {
+        console.log("i was called with ");
+        console.log(manager);
         return `
         <div class="card employee-card">
         <div class="card-header">
