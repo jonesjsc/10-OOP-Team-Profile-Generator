@@ -11,6 +11,8 @@ const outputPath = path.join(outputDir, "myteam.html");
 
 const myTeam = []; // initialize the myTeam as an array object
 
+// 3 of the 4 questions are the same, so lets recycle them
+
 const baseQuery = [
     {
         type: "input",
@@ -30,7 +32,9 @@ const baseQuery = [
 ]
 
 // const managerQuery=[...baseQuery]; // using spread here because I want a true copy
+// we are asking a custom question, let's be especially lazy and just prebuild out inquirer prompts, and customize the message
 const managerQuery=JSON.parse(JSON.stringify(baseQuery));  // TIL the differece between shallow copy and deep copy :-)
+
 managerQuery.push( 
     {
         type: "input",
@@ -43,7 +47,9 @@ managerQuery.push(
     console.log(managerQuery[0].message);
 
 // const engineerQuery=[...baseQuery]; // using spread here because I want a true copy
+// we are asking a custom question, let's be especially lazy and just prebuild out inquirer prompts, and customize the message
 const engineerQuery=JSON.parse(JSON.stringify(baseQuery)); // TIL the differece between shallow copy and deep copy :-)
+
 engineerQuery.push(
         {
         type: "input",
@@ -54,7 +60,9 @@ engineerQuery.push(
     for (let i = 0; i < 3; i++) engineerQuery[i].message="Engineer: "+engineerQuery[i].message;
 
 // const internQuery=[...baseQuery]; // using spread here because I want a true copy
+// we are asking a custom question, let's be especially lazy and just prebuild out inquirer prompts, and customize the message
 const internQuery=JSON.parse(JSON.stringify(baseQuery)); // TIL the differece between shallow copy and deep copy :-)
+
 internQuery.push(
     {
         type: "input",
@@ -77,6 +85,8 @@ const emp = [
     }
 ];
 
+createMgr();  // main entry point
+
 function createMgr() {
     inquirer.prompt(managerQuery)
     .then((answers) => {
@@ -91,7 +101,20 @@ function createMgr() {
         createEmployee();
     });
 }
-createMgr();
+
+function createEmployee() {
+    inquirer.prompt(emp)
+    .then((answers) => {
+        switch (answers.employeeRole) {
+            case "engineer":
+                return createEngineer();
+            case "intern":
+                return createIntern();
+            default:
+                return createTeam();
+        }
+    });
+}
 
 function createEngineer() {
     inquirer.prompt(engineerQuery)
@@ -120,20 +143,6 @@ function createIntern() {
         );
         myTeam.push(emp);
         createEmployee();
-    });
-}
-
-function createEmployee() {
-    inquirer.prompt(emp)
-    .then((answers) => {
-        switch (answers.employeeRole) {
-            case "engineer":
-                return createEngineer();
-            case "intern":
-                return createIntern();
-            default:
-                return createTeam();
-        }
     });
 }
 
