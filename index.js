@@ -44,8 +44,6 @@ managerQuery.push(
 
     for (let i = 0; i < 3; i++) managerQuery[i].message="Manager: "+managerQuery[i].message;
     
-    console.log(managerQuery[0].message);
-
 // const engineerQuery=[...baseQuery]; // using spread here because I want a true copy
 // we are asking a custom question, let's be especially lazy and just prebuild out inquirer prompts, and customize the message
 const engineerQuery=JSON.parse(JSON.stringify(baseQuery)); // TIL the differece between shallow copy and deep copy :-)
@@ -90,7 +88,6 @@ createMgr();  // main entry point
 function createMgr() {
     inquirer.prompt(managerQuery)
     .then((answers) => {
-        console.log(answers);
         const emp = new Manager(
             answers.name,
             answers.id,
@@ -119,7 +116,6 @@ function createEmployee() {
 function createEngineer() {
     inquirer.prompt(engineerQuery)
     .then((answers) => {
-        console.log(answers);
         const emp = new Engineer(
             answers.name,
             answers.id,
@@ -134,7 +130,6 @@ function createEngineer() {
 function createIntern() {
     inquirer.prompt(internQuery)
     .then((answers) => {
-        console.log(answers);
         const emp = new Intern(
             answers.name,
             answers.id,
@@ -147,7 +142,5 @@ function createIntern() {
 }
 
 function createTeam() {
-    console.log("create");
-    console.log(myTeam);
     fs.writeFileSync(outputPath, generateTeam(myTeam))
 }
