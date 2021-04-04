@@ -100,4 +100,4 @@ Ran all test suites matching /Manager/i.
 * This repo is located [on github](https://github.com/jonesjsc/10-OOP-Team-Profile-Generator)
 * Sample output is available [on github](https://github.com/jonesjsc/10-OOP-Team-Profile-Generator/blob/main/output/myteam.html)
 * A video of the test procedures [is available](https://drive.google.com/file/d/1-_O2-D3EaKX7jyKKMWbEREhNP_wb_v66/view)
-* A video of the running program [is available](https://drive.google.com/file/d/1ExjIxHWsbgS-EDM_ahtgdn_4RFwlHkWi/view)
+* A video of the running program [is available](https://drive.google.com/file/d/1oiQvjNAZlsuIBq6HDE9gEZeKRndezf3_/view)
